@@ -4,6 +4,6 @@ namespace WeaponModules
 {
     public abstract class ShootModule: ScriptableObject
     {
-        public abstract void Shoot();
+        public abstract void Shoot(Transform shooter);
     }
 }

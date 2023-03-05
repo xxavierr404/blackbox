@@ -13,12 +13,12 @@ public class BlackBox : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") > 0)
         {
-            _firstShootModule.Shoot();
+            _firstShootModule.Shoot(playerController.transform);
         }
 
         if (Input.GetAxis("Fire2") > 0)
         {
-            _secondShootModule.Shoot();
+            _secondShootModule.Shoot(playerController.transform);
         }
     }
 
