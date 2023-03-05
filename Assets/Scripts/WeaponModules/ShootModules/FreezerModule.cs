@@ -12,8 +12,14 @@ namespace WeaponModules.ShootModules
         {
             RaycastHit hit;
             Physics.Raycast(shooter.position, shooter.forward, out hit, shootDistance);
-            Debug.DrawRay(shooter.position, shooter.forward * 3f, Color.red);
-            hit.collider.GetComponent<Freezable>().IncreaseFreezeRate(freezePower);
+            
+            var freezable = hit.collider.GetComponent<Freezable>();
+            if (!freezable)
+            {
+                return;
+            }
+            
+            freezable.IncreaseFreezeRate(freezePower);
         }
     }
 }
