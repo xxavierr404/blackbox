@@ -5,20 +5,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSensitivity;
+    [SerializeField] private Collider feetCollider;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private int maxJumpCount;
 
+    private int _jumpCount;
+    
     private void Update()
     {
-        var playerRotation = new Vector3(0, Input.GetAxis("Mouse X"), 0);
+        MovePlayer(GetMovementVector());
+        RotatePlayer(new Vector3(0, 
+            Input.GetAxis("Mouse X"),
+            0)
+        );
+    }
 
-        var movementVector = new Vector3(
+    private Vector3 GetMovementVector()
+    {
+        return transform.TransformDirection(new Vector3(
             Input.GetAxis("Horizontal"),
             0,
-            Input.GetAxis("Vertical"));
-        
-        movementVector = transform.TransformDirection(movementVector);
-
-        MovePlayer(movementVector);
-        RotatePlayer(playerRotation);
+            Input.GetAxis("Vertical")
+            )
+        );
     }
 
     private void MovePlayer(Vector3 movementVector)
