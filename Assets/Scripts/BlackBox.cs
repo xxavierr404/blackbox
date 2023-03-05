@@ -23,11 +23,17 @@ public class BlackBox : MonoBehaviour
         if (Input.GetAxis("Fire1") > 0 && _firstShootModule)
         {
             _firstShootModule.Shoot(_mainTransform);
+        } else if (_firstShootModule)
+        {
+            _firstShootModule.StopShooting();
         }
 
         if (Input.GetAxis("Fire2") > 0 && _secondShootModule)
         {
             _secondShootModule.Shoot(_mainTransform);
+        } else if (_secondShootModule)
+        {
+            _secondShootModule.StopShooting();
         }
     }
 

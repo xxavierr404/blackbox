@@ -9,6 +9,7 @@ public class Freezable : MonoBehaviour
 
     private float _currentFreezeRate;
     private float _timePassed;
+    private bool _frozen;
     
     private void Start()
     {
