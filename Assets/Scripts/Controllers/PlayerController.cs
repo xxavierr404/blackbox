@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxJumpCount;
 
     private const int JumpFrameDelay = 60;
+    private int _currentMaxJumpCount;
     private int _jumpCount;
     private int _delay;
 
@@ -21,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         MovePlayer(GetMovementVector());
-        
         RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
     }
 
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (_jumpCount >= maxJumpCount)
+        if (_jumpCount >= _currentMaxJumpCount)
         {
             if (CheckGround())
             {
@@ -82,5 +82,15 @@ public class PlayerController : MonoBehaviour
     private void RotatePlayer(Vector3 rotationVector)
     {
         transform.Rotate(rotationVector * rotationSensitivity);
+    }
+
+    public void ResetMaxJumpCount()
+    {
+        _currentMaxJumpCount = maxJumpCount;
+    }
+
+    public void SetMaxJumpCount(int count)
+    {
+        _currentMaxJumpCount = count;
     }
 }
