@@ -1,8 +1,10 @@
-﻿namespace WeaponModules
+﻿using UnityEngine;
+
+namespace WeaponModules
 {
-    public interface IMovementModule
+    public abstract class MovementModule: ScriptableObject
     {
-        void ApplyBuff(PlayerController player);
-        void RevertBuff(PlayerController player);
+        public abstract void ApplyBuff(PlayerController player);
+        public abstract void RevertBuff(PlayerController player);
     }
 }

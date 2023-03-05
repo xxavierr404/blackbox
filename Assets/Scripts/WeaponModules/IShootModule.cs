@@ -1,8 +1,9 @@
-﻿namespace WeaponModules
+﻿using UnityEngine;
+
+namespace WeaponModules
 {
-    public interface IShootModule
+    public abstract class ShootModule: ScriptableObject
     {
-        void LeftMouseButton();
-        void RightMouseButton();
+        public abstract void Shoot();
     }
 }
