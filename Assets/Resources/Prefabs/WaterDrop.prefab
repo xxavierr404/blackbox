@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2632822222383836965}
   - component: {fileID: 5560566846691715468}
   - component: {fileID: 4078771117208319519}
+  - component: {fileID: 2300764013645874678}
   m_Layer: 0
   m_Name: WaterDrop
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2632822222383836964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.364, y: 0.91, z: 1.0816262}
-  m_LocalScale: {x: 0.16031, y: 0.16031, z: 0.16031}
+  m_LocalScale: {x: 0.46964082, y: 0.46964082, z: 0.46964082}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,4 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626d20f8ba6640d9be37dd304801439c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilEvaporation: 15
+  timeUntilEvaporation: 30
+--- !u!114 &2300764013645874678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632822222383836964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ba3a835cff4586911d3a41d0451d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFreezeRate: 1
+  freezeDuration: 10
+  rb: {fileID: 5560566846691715468}
+  renderer: {fileID: 2632822222383836966}

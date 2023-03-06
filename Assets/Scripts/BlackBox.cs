@@ -7,7 +7,7 @@ public class BlackBox : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ShootModule testModule;
-    [SerializeField] private PassiveModule testPassiveModule;
+    [SerializeField] private ShootModule secondTestModule;
     
     private ShootModule _firstShootModule;
     private ShootModule _secondShootModule;
@@ -18,7 +18,7 @@ public class BlackBox : MonoBehaviour
     {
         _mainTransform = Camera.main.transform;
         _firstShootModule = testModule;
-        SetPassiveModule(testPassiveModule);
+        _secondShootModule = secondTestModule;
     }
 
     private void Update()
