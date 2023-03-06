@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 5436709204155494733}
   - component: {fileID: 976011787511752924}
   - component: {fileID: 6816367344838579041}
-  - component: {fileID: 6816367344838579043}
+  - component: {fileID: 6816367344838579042}
   m_Layer: 0
   m_Name: BlackBox
   m_TagString: Untagged
@@ -2092,8 +2092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 709950586}
-  testModule: {fileID: 6816367344838579043}
---- !u!114 &6816367344838579043
+  testModule: {fileID: 6816367344838579042}
+--- !u!114 &6816367344838579042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2102,9 +2102,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2226300849517365981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e725e9a29fb4b2fafc860b9aa33aaa7, type: 3}
+  m_Script: {fileID: 11500000, guid: e24f5f018be948bc9204f063f1d5f4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  shootDelay: 30
-  light: {fileID: 1765736132}
+  shootDelay: 10
+  teleportableTransform: {fileID: 709950591}
