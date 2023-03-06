@@ -13,6 +13,12 @@ namespace Objects
                 freezable.ResetFreezeRate();
             }
 
+            var water = collision.gameObject.GetComponent<WaterDrop>();
+            if (water)
+            {
+                Destroy(collision.gameObject);
+            }
+
             Destroy(gameObject);
         }
     }
