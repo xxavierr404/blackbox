@@ -7,40 +7,29 @@ namespace WeaponModules.ShootModules
     {
         [SerializeField] private String prefabName;
         [SerializeField] private float shootingForce;
-        [SerializeField] private float shootDelay;
 
-        private float _delay;
         private UnityEngine.Object _bulletPrefab;
 
         private void Start()
         {
-            _delay = 0;
             _bulletPrefab = Resources.Load(prefabName);
-        }
-
-        private void Update()
-        {
-            if (_delay > 0)
-            {
-                _delay -= Time.deltaTime;
-            }
         }
 
         public override void Shoot(Transform shooter)
         {
-            if (_delay > 0)
+            base.Shoot(shooter);
+            if (!CanShoot)
             {
                 return;
             }
 
-            base.Shoot(shooter);
+            var weaponTransform = transform;
             var bulletInstance = Instantiate(_bulletPrefab,
-                transform.position, 
-                transform.rotation, 
+                weaponTransform.position, 
+                weaponTransform.rotation, 
                 null) as GameObject;
             bulletInstance.GetComponent<Rigidbody>().AddForce(shooter.forward * shootingForce, 
                 ForceMode.Impulse);
-            _delay = shootDelay;
         }
     }
 }
