@@ -32,8 +32,9 @@ namespace WeaponModules.ShootModules
             }
 
             base.Shoot(shooter);
-            var bulletInstance = Instantiate(bullet, transform, false);
-            bulletInstance.GetComponent<Rigidbody>().AddForce(transform.forward * shootingForce, ForceMode.Impulse);
+            var bulletInstance = Instantiate(bullet, shooter.position, shooter.rotation, null);
+            bulletInstance.GetComponent<Rigidbody>().AddForce(shooter.forward * shootingForce, 
+                ForceMode.Impulse);
             _delay = shootDelay;
         }
     }

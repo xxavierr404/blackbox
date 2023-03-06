@@ -13,7 +13,7 @@ namespace Objects
                 freezable.ResetFreezeRate();
             }
 
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
