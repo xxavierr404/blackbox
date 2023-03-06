@@ -5,5 +5,5 @@ using WeaponModules;
 public class Inventory: MonoBehaviour
 {
     [SerializeField] private List<ShootModule> availableShootModules;
-    [SerializeField] private List<MovementModule> availableMovementModules;
+    [SerializeField] private List<PassiveModule> availableMovementModules;
 }

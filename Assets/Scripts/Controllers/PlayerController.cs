@@ -1,96 +1,112 @@
-using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Controllers
 {
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private float rotationSensitivity;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private int maxJumpCount;
-
-    private const int JumpFrameDelay = 60;
-    private int _currentMaxJumpCount;
-    private int _jumpCount;
-    private int _delay;
-
-    private void Start()
+    public class PlayerController : MonoBehaviour
     {
-        _delay = 0;
-    }
+        [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private float movementSpeed;
+        [SerializeField] private float rotationSensitivity;
+        [SerializeField] private float jumpForce;
+        [SerializeField] private int maxJumpCount;
 
-    private void Update()
-    {
-        MovePlayer(GetMovementVector());
-        RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-    }
+        private const float JumpDelay = 0.2f;
+        private int _currentMaxJumpCount;
+        private float _currentMovementSpeed;
+        private int _jumpCount;
+        private float _framesUntilNextJump;
 
-    private void FixedUpdate()
-    {
-        if (Input.GetAxis("Jump") > 0 && _delay <= 0)
+        private void Start()
         {
-            Jump();
+            _framesUntilNextJump = 0;
+            ResetMovementSpeed();
+            ResetMaxJumpCount();
         }
 
-        if (_delay > 0)
+        private void Update()
         {
-            _delay--;
+            MovePlayer(GetMovementVector());
+            RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
         }
-    }
 
-    private void Jump()
-    {
-        if (_jumpCount >= _currentMaxJumpCount)
+        private void FixedUpdate()
         {
-            if (CheckGround())
+            if (Input.GetAxis("Jump") > 0 && _framesUntilNextJump <= 0)
             {
-                _jumpCount = 0;
+                Jump();
             }
-            else
+
+            if (_framesUntilNextJump > 0)
             {
-                return;
+                _framesUntilNextJump -= Time.deltaTime;
             }
         }
 
-        _delay = JumpFrameDelay;
-        _jumpCount++;
-        rb.AddForce(new Vector3(0, jumpForce), ForceMode.VelocityChange);
-    }
+        private void Jump()
+        {
+            if (_jumpCount >= _currentMaxJumpCount)
+            {
+                if (CheckGround())
+                {
+                    _jumpCount = 0;
+                }
+                else
+                {
+                    return;
+                }
+            }
 
-    private bool CheckGround()
-    {
-        return Physics.Raycast(transform.position - Vector3.down,
-            Vector3.down,
-            3f);
-    }
+            _framesUntilNextJump = JumpDelay;
+            _jumpCount++;
+            rigidbody.AddForce(new Vector3(0, jumpForce), ForceMode.VelocityChange);
+        }
 
-    private Vector3 GetMovementVector()
-    {
-        return transform.TransformDirection(new Vector3(
-            Input.GetAxis("Horizontal"),
-            0,
-            Input.GetAxis("Vertical")
-            )
-        );
-    }
+        private bool CheckGround()
+        {
+            Debug.DrawRay(transform.position - Vector3.down * 0.8f, Vector3.down * 0.5f, Color.red);
+            return Physics.Raycast(transform.position - Vector3.down,
+                Vector3.down,
+                2f);
+        }
 
-    private void MovePlayer(Vector3 movementVector)
-    {
-        rb.AddForce(movementVector * movementSpeed, ForceMode.Force);
-    }
+        private Vector3 GetMovementVector()
+        {
+            return transform.TransformDirection(new Vector3(
+                    Input.GetAxis("Horizontal"),
+                    0,
+                    Input.GetAxis("Vertical")
+                )
+            );
+        }
 
-    private void RotatePlayer(Vector3 rotationVector)
-    {
-        transform.Rotate(rotationVector * rotationSensitivity);
-    }
+        private void MovePlayer(Vector3 movementVector)
+        {
+            rigidbody.AddForce(movementVector * _currentMovementSpeed, ForceMode.Force);
+        }
 
-    public void ResetMaxJumpCount()
-    {
-        _currentMaxJumpCount = maxJumpCount;
-    }
+        private void RotatePlayer(Vector3 rotationVector)
+        {
+            transform.Rotate(rotationVector * rotationSensitivity);
+        }
 
-    public void SetMaxJumpCount(int count)
-    {
-        _currentMaxJumpCount = count;
+        public void ResetMaxJumpCount()
+        {
+            _currentMaxJumpCount = maxJumpCount;
+        }
+
+        public void SetMaxJumpCount(int count)
+        {
+            _currentMaxJumpCount = count;
+        }
+
+        public void SetMovementSpeed(float speed)
+        {
+            _currentMovementSpeed = speed;
+        }
+
+        public void ResetMovementSpeed()
+        {
+            _currentMovementSpeed = movementSpeed;
+        }
     }
 }

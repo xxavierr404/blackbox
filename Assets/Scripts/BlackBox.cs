@@ -1,4 +1,5 @@
 using System;
+using Controllers;
 using UnityEngine;
 using WeaponModules;
 
@@ -6,16 +7,18 @@ public class BlackBox : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ShootModule testModule;
+    [SerializeField] private PassiveModule testPassiveModule;
     
     private ShootModule _firstShootModule;
     private ShootModule _secondShootModule;
-    private MovementModule _movementModule;
+    private PassiveModule _passiveModule;
     private Transform _mainTransform;
 
     private void Start()
     {
         _mainTransform = Camera.main.transform;
         _firstShootModule = testModule;
+        SetPassiveModule(testPassiveModule);
     }
 
     private void Update()
@@ -37,10 +40,13 @@ public class BlackBox : MonoBehaviour
         }
     }
 
-    public void SetMovementModule(MovementModule movementModule)
+    private void SetPassiveModule(PassiveModule passiveModule)
     {
-        _movementModule.RevertBuff(playerController);
-        _movementModule = movementModule;
-        _movementModule.ApplyBuff(playerController);
+        if (_passiveModule)
+        {
+            _passiveModule.RevertBuff(playerController);
+        }
+        _passiveModule = passiveModule;
+        _passiveModule.ApplyBuff(playerController);
     }
 }

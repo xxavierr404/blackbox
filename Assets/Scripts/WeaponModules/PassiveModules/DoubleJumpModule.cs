@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Controllers;
+using UnityEngine;
 
-namespace WeaponModules.MovementModules
+namespace WeaponModules.PassiveModules
 {
-    [CreateAssetMenu(fileName = "JumpModule", menuName = "Movement Modules/Jump module", order = 0)]
-    public class DoubleJumpModule : MovementModule
+    [CreateAssetMenu(fileName = "JumpModule", menuName = "Passive Modules/Jump module")]
+    public class DoubleJumpModule : PassiveModule
     {
         [SerializeField] private int jumpCount;
         

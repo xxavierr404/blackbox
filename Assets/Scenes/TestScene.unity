@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3e0cc98e995d459c42b6bf97366bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 709950587}
+  rigidbody: {fileID: 709950587}
   movementSpeed: 3
   rotationSensitivity: 3
   jumpForce: 8
@@ -741,7 +741,7 @@ Rigidbody:
   m_GameObject: {fileID: 709950585}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 3
   m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1566,7 +1566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1765736131
 Transform:
   m_ObjectHideFlags: 0
@@ -2047,7 +2047,6 @@ GameObject:
   - component: {fileID: 5436709204155494733}
   - component: {fileID: 976011787511752924}
   - component: {fileID: 6816367344838579041}
-  - component: {fileID: 6816367344838579042}
   m_Layer: 0
   m_Name: BlackBox
   m_TagString: Untagged
@@ -2093,19 +2092,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 709950586}
-  testModule: {fileID: 6816367344838579042}
---- !u!114 &6816367344838579042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226300849517365981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24f5f018be948bc9204f063f1d5f4da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 0}
-  shootDelay: 10
-  teleportableTransform: {fileID: 709950591}
+  testModule: {fileID: 0}
+  testPassiveModule: {fileID: 11400000, guid: dce9d058dce4b6d4caf6986055f230fd, type: 2}
