@@ -728,9 +728,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 709950587}
-  movementSpeed: 2.5
+  movementSpeed: 3
   rotationSensitivity: 3
-  jumpForce: 6
+  jumpForce: 8
   maxJumpCount: 1
 --- !u!54 &709950587
 Rigidbody:
@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943b1e12412d4a0f932ed80f557f9348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalSensitivity: 360
 --- !u!1001 &1128874374
 PrefabInstance:
   m_ObjectHideFlags: 0

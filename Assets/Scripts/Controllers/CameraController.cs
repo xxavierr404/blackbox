@@ -2,6 +2,8 @@
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private float verticalSensitivity;
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -10,7 +12,14 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        var rotationVector = new Vector3(Input.GetAxis("Mouse Y") * -1, 0);
-        transform.Rotate(rotationVector, Space.Self);
+        var angularIncrement = verticalSensitivity * Input.GetAxis("Mouse Y") * Time.deltaTime * -1;
+        var eulerAngles = transform.localEulerAngles;
+
+        if(eulerAngles.x > 180f)
+            eulerAngles.x -= 360f;
+
+        eulerAngles.x = Mathf.Clamp(eulerAngles.x + angularIncrement, -90, 90);
+
+        transform.localEulerAngles = eulerAngles;
     }
 }
