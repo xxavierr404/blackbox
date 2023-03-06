@@ -1465,6 +1465,7 @@ MonoBehaviour:
   maxFreezeRate: 100
   freezeDuration: 5
   rb: {fileID: 1521384609}
+  renderer: {fileID: 1521384611}
 --- !u!114 &1521384615
 MonoBehaviour:
   m_ObjectHideFlags: 0
