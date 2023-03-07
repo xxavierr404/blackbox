@@ -10,8 +10,8 @@ namespace WeaponModules.ShootModules
         public override void Shoot(Transform shooter)
         {
             base.Shoot(shooter);
-            RaycastHit hit;
-            Physics.Raycast(shooter.position, shooter.forward, out hit, shootDistance);
+            
+            Physics.Raycast(transform.position, shooter.forward, out var hit, shootDistance);
             
             if (!hit.collider)
             {
@@ -19,12 +19,10 @@ namespace WeaponModules.ShootModules
             }
             
             var freezable = hit.collider.GetComponent<Freezable>();
-            if (!freezable)
+            if (freezable)
             {
-                return;
+                freezable.IncreaseFreezeRate(freezePower * Time.deltaTime);
             }
-            
-            freezable.IncreaseFreezeRate(freezePower);
         }
     }
 }

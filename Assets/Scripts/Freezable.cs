@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Freezable : MonoBehaviour
@@ -16,6 +15,16 @@ public class Freezable : MonoBehaviour
         get => _currentFreezeRate;
         set
         {
+            if (value == 0)
+            {
+                Unfreeze();
+            }
+
+            if (value >= maxFreezeRate)
+            {
+                Freeze();
+            }
+            
             if (renderer)
             {
                 if (value == 0)
@@ -24,19 +33,20 @@ public class Freezable : MonoBehaviour
                 }
                 else
                 {
+                    var freezeRate = Mathf.Clamp(value, 0, maxFreezeRate);
                     var material = renderer.material;
                     var oldColor = material.color;
                     material.color = new Color(
-                        oldColor.r * (maxFreezeRate - value) / maxFreezeRate,
-                        oldColor.g * (maxFreezeRate - value) / maxFreezeRate,
-                        value / maxFreezeRate * 255);
+                        oldColor.r * (maxFreezeRate - freezeRate) / maxFreezeRate,
+                        oldColor.g * (maxFreezeRate - freezeRate) / maxFreezeRate,
+                        freezeRate / maxFreezeRate * 255);
                 }
             }
 
             _currentFreezeRate = value;
         }
     }
-    private float _timePassed;
+    private float _timeUntilUnfreezing;
     private bool _frozen;
     private Color _initialColor;
     
@@ -47,9 +57,9 @@ public class Freezable : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_timePassed < freezeDuration)
+        if (_timeUntilUnfreezing > 0)
         {
-            _timePassed += Time.deltaTime;
+            _timeUntilUnfreezing -= Time.deltaTime;
         }
         else
         {
@@ -60,36 +70,35 @@ public class Freezable : MonoBehaviour
     public void ResetFreezeRate()
     {
         CurrentFreezeRate = 0;
-        Unfreeze();
     }
     
     public void IncreaseFreezeRate(float freezeRate)
     {
-        _timePassed = 0;
+        _timeUntilUnfreezing = freezeDuration;
         CurrentFreezeRate += freezeRate;
-        if (CurrentFreezeRate >= maxFreezeRate && !_frozen)
-        {
-            Freeze();
-        }
     }
 
     private void Freeze()
     {
-        Debug.Log("Frozen");
-        rb.constraints = RigidbodyConstraints.FreezeAll;
-        rb.velocity = Vector3.zero;
+        if (_frozen)
+        {
+            return;
+        }
+        
+        _frozen = true;
+        rb.isKinematic = true;
 
         if (navMeshAgent)
         {
             navMeshAgent.isStopped = true;
         }
-
-        _frozen = true;
+        
+        _timeUntilUnfreezing = freezeDuration;
     }
 
     private void Unfreeze()
     {
-        rb.constraints = RigidbodyConstraints.None;
+        rb.isKinematic = false;
 
         if (navMeshAgent)
         {

@@ -5,16 +5,9 @@ namespace WeaponModules.ShootModules
 {
     public class GenericProjectileModule : ShootModule
     {
-        [SerializeField] private String prefabName;
         [SerializeField] private float shootingForce;
-
-        private UnityEngine.Object _bulletPrefab;
-
-        private void Start()
-        {
-            _bulletPrefab = Resources.Load(prefabName);
-        }
-
+        [SerializeField] private GameObject _bulletPrefab;
+        
         public override void Shoot(Transform shooter)
         {
             base.Shoot(shooter);
@@ -25,10 +18,13 @@ namespace WeaponModules.ShootModules
 
             var weaponTransform = transform;
             var bulletInstance = Instantiate(_bulletPrefab,
-                weaponTransform.position, 
-                weaponTransform.rotation, 
-                null) as GameObject;
-            bulletInstance.GetComponent<Rigidbody>().AddForce(shooter.forward * shootingForce, 
+                weaponTransform.position,
+                weaponTransform.rotation,
+                null);
+            bulletInstance
+                .GetComponent<Rigidbody>()
+                .AddForce(
+                shooter.forward * shootingForce, 
                 ForceMode.Impulse);
         }
     }

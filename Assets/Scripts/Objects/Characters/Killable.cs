@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Objects.Characters
 {
     public class Killable : MonoBehaviour
     {
         [SerializeField] private int healthPoints;
+        public UnityEvent onDeath;
 
         private int _currentHealthPoints;
         private int CurrentHealthPoints
@@ -15,7 +17,8 @@ namespace Objects.Characters
             {
                 if (value <= 0)
                 {
-                    Destroy(gameObject);
+                    onDeath?.Invoke();
+                    value = 0;
                 }
 
                 _currentHealthPoints = value;

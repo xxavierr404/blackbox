@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
   shootDelay: 0.1
-  prefabName: Prefabs/WaterDrop
   shootingForce: 10
+  _bulletPrefab: {fileID: 2632822222383836964, guid: b50fc0c82c16ca843b7b65455333a329, type: 3}
