@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Freezable : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Freezable : MonoBehaviour
     [SerializeField] private float freezeDuration;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private new MeshRenderer renderer;
+    [SerializeField] private NavMeshAgent navMeshAgent;
 
     private float _currentFreezeRate;
     private float CurrentFreezeRate
@@ -41,7 +43,6 @@ public class Freezable : MonoBehaviour
     private void Start()
     {
         _initialColor = renderer.material.color;
-        ResetFreezeRate();
     }
 
     private void FixedUpdate()
@@ -66,7 +67,7 @@ public class Freezable : MonoBehaviour
     {
         _timePassed = 0;
         CurrentFreezeRate += freezeRate;
-        if (CurrentFreezeRate >= maxFreezeRate)
+        if (CurrentFreezeRate >= maxFreezeRate && !_frozen)
         {
             Freeze();
         }
@@ -74,11 +75,27 @@ public class Freezable : MonoBehaviour
 
     private void Freeze()
     {
+        Debug.Log("Frozen");
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.velocity = Vector3.zero;
+
+        if (navMeshAgent)
+        {
+            navMeshAgent.isStopped = true;
+        }
+
+        _frozen = true;
     }
 
     private void Unfreeze()
     {
         rb.constraints = RigidbodyConstraints.None;
+
+        if (navMeshAgent)
+        {
+            navMeshAgent.isStopped = false;
+        }
+
+        _frozen = false;
     }
 }

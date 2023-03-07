@@ -63,7 +63,6 @@ namespace Controllers
 
         private bool CheckGround()
         {
-            Debug.DrawRay(transform.position - Vector3.down * 0.8f, Vector3.down * 0.5f, Color.red);
             return Physics.Raycast(transform.position - Vector3.down,
                 Vector3.down,
                 2f);
