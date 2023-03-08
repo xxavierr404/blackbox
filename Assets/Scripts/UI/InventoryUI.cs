@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using WeaponModules;
 
 namespace UI
 {
@@ -25,14 +26,14 @@ namespace UI
 
         private void Awake()
         {
+            inventory.OnNewShootModuleEvent += AddShootModule;
+            inventory.OnNewPassiveModuleEvent += AddPassiveModule;
+            
             foreach (var module in inventory.AvailablePassiveModules)
-                passiveModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
+                AddPassiveModule(module);
 
             foreach (var module in inventory.AvailableShootModules)
-            {
-                firstModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
-                secondModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
-            }
+                AddShootModule(module);
         }
 
         private void Update()
@@ -45,6 +46,17 @@ namespace UI
                 Cursor.visible = InventoryOpened;
                 Cursor.lockState = InventoryOpened ? CursorLockMode.None : CursorLockMode.Locked;
             }
+        }
+
+        private void AddPassiveModule(PassiveModule module)
+        {
+            passiveModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
+        }
+
+        private void AddShootModule(ShootModule module)
+        {
+            firstModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
+            secondModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
         }
     }
 }

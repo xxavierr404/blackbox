@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5560566846691715468}
   - component: {fileID: 4078771117208319519}
   - component: {fileID: 2300764013645874678}
+  - component: {fileID: -2352696468973108309}
   m_Layer: 0
   m_Name: WaterDrop
   m_TagString: Untagged
@@ -144,4 +145,19 @@ MonoBehaviour:
   maxFreezeRate: 1
   freezeDuration: 10
   rb: {fileID: 5560566846691715468}
+  navMeshAgent: {fileID: 0}
+  attacker: {fileID: 0}
+  colorHandler: {fileID: -2352696468973108309}
+--- !u!114 &-2352696468973108309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632822222383836964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6d17de468e41a397d0977b850cee8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   renderer: {fileID: 2632822222383836966}
