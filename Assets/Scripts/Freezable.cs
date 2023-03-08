@@ -42,9 +42,6 @@ public class Freezable : MonoBehaviour
                         oldColor.r * (maxFreezeRate - freezeRate) / maxFreezeRate,
                         oldColor.g * (maxFreezeRate - freezeRate) / maxFreezeRate,
                         freezeRate / maxFreezeRate);
-                    Debug.Log(oldColor.r * (maxFreezeRate - freezeRate) / maxFreezeRate);
-                    Debug.Log(oldColor.g * (maxFreezeRate - freezeRate) / maxFreezeRate);
-                    Debug.Log(freezeRate / maxFreezeRate);
                 }
             }
 

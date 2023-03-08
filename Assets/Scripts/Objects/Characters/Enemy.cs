@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +18,8 @@ namespace Objects.Characters
         {
             Idle,
             Chasing,
-            Attacking
+            Attacking,
+            Disabled
         }
 
         private EnemyState _state;
@@ -42,6 +44,8 @@ namespace Objects.Characters
                     break;
                 case EnemyState.Attacking:
                     AttackTarget(distance);
+                    break;
+                case EnemyState.Disabled:
                     break;
             }
             
@@ -86,6 +90,23 @@ namespace Objects.Characters
             {
                 _state = EnemyState.Chasing;
             }
+        }
+
+        public void DisableForSeconds(float seconds)
+        {
+            if (_state == EnemyState.Disabled)
+            {
+                return;
+            }
+
+            _state = EnemyState.Disabled;
+            StartCoroutine(WaitBeforeEnabling(seconds));
+        }
+
+        private IEnumerator WaitBeforeEnabling(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            _state = EnemyState.Idle;
         }
     }
 }

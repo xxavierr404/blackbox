@@ -9,25 +9,40 @@ namespace Objects.Projectiles
         
         private void OnCollisionEnter(Collision collision)
         {
-            var freezable = collision.gameObject.GetComponent<Freezable>();
+            var collisionGameObject = collision.gameObject;
+            
+            AffectFreezable(collisionGameObject);
+            AffectWater(collisionGameObject);
+            AffectKillable(collisionGameObject);
+            
+            Destroy(gameObject);
+        }
+
+        private void AffectFreezable(GameObject obj)
+        {
+            var freezable = obj.GetComponent<Freezable>();
             if (freezable)
             {
                 freezable.ResetFreezeRate();
             }
+        }
 
-            var water = collision.gameObject.GetComponent<WaterDrop>();
+        private void AffectWater(GameObject obj)
+        {
+            var water = obj.GetComponent<WaterDrop>();
             if (water)
             {
-                Destroy(collision.gameObject);
+                Destroy(obj);
             }
+        }
 
-            var killable = collision.gameObject.GetComponent<Killable>();
+        private void AffectKillable(GameObject obj)
+        {
+            var killable = obj.GetComponent<Killable>();
             if (killable)
             {
                 killable.DealDamage(damage);
             }
-            
-            Destroy(gameObject);
         }
     }
 }
