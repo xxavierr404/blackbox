@@ -14,9 +14,9 @@ public class Inventory: MonoBehaviour
     {
         foreach (var module in AvailableShootModules)
         {
-            if (module.ModuleName == moduleName) return module;
+            if (module.ModuleName.Equals(moduleName)) return module;
         }
-
+        
         return null;
     }
     
@@ -24,9 +24,9 @@ public class Inventory: MonoBehaviour
     {
         foreach (var module in AvailablePassiveModules)
         {
-            if (module.ModuleName == moduleName) return module;
+            if (module.ModuleName.Equals(moduleName)) return module;
         }
-
+        
         return null;
     }
 }

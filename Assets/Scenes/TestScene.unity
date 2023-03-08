@@ -1195,7 +1195,19 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1279985893}
+        m_TargetAssemblyTypeName: BlackBox, Assembly-CSharp
+        m_MethodName: SetPassiveModule
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 471831480}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &471831481
 MonoBehaviour:
@@ -2336,13 +2348,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1279985892}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1279985893}
+        m_TargetAssemblyTypeName: BlackBox, Assembly-CSharp
+        m_MethodName: SetFirstShootModule
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 806486661}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3091,7 +3103,19 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1279985893}
+        m_TargetAssemblyTypeName: BlackBox, Assembly-CSharp
+        m_MethodName: SetSecondShootModule
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1004210665}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TMP_Dropdown, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1004210666
 MonoBehaviour:
@@ -4083,17 +4107,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259666502}
   m_CullTransparentMesh: 1
---- !u!1 &1279985892 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3867296533218521175, guid: c097525941daada4598a950f59d9e84d, type: 3}
-  m_PrefabInstance: {fileID: 3120446326860741258}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1279985893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8491137538790648299, guid: c097525941daada4598a950f59d9e84d, type: 3}
   m_PrefabInstance: {fileID: 3120446326860741258}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279985892}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7560ffa674c1dc349b96ed7fc320ca79, type: 3}
@@ -7210,6 +7229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8491137538790648299, guid: c097525941daada4598a950f59d9e84d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 3120446326860741263}
     - target: {fileID: 8491137538790648299, guid: c097525941daada4598a950f59d9e84d, type: 3}
       propertyPath: testModule
       value: 

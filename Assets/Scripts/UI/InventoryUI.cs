@@ -14,7 +14,7 @@ namespace UI
         [SerializeField] private TMP_Dropdown firstModuleDropdown;
         [SerializeField] private TMP_Dropdown secondModuleDropdown;
 
-        private bool _inventoryOpened = false;
+        private bool _inventoryOpened;
         
         private void Awake()
         {
