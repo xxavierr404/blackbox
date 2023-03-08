@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace WeaponModules.ShootModules
 {
@@ -7,14 +6,11 @@ namespace WeaponModules.ShootModules
     {
         [SerializeField] private float shootingForce;
         [SerializeField] private GameObject _bulletPrefab;
-        
+
         public override void Shoot(Transform shooter)
         {
             base.Shoot(shooter);
-            if (!CanShoot)
-            {
-                return;
-            }
+            if (!CanShoot) return;
 
             var weaponTransform = transform;
             var bulletInstance = Instantiate(_bulletPrefab,
@@ -24,8 +20,8 @@ namespace WeaponModules.ShootModules
             bulletInstance
                 .GetComponent<Rigidbody>()
                 .AddForce(
-                shooter.forward * shootingForce, 
-                ForceMode.Impulse);
+                    shooter.forward * shootingForce,
+                    ForceMode.Impulse);
         }
     }
 }

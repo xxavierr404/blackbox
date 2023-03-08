@@ -5,9 +5,9 @@ namespace Objects.Projectiles
     public class WaterDrop : MonoBehaviour
     {
         [SerializeField] private float timeUntilEvaporation;
+        private bool _evaporating;
 
         private float _timeLeft;
-        private bool _evaporating;
 
         private void Awake()
         {
@@ -17,15 +17,9 @@ namespace Objects.Projectiles
 
         private void Update()
         {
-            if (_timeLeft <= 0)
-            {
-                Destroy(gameObject);
-            }
+            if (_timeLeft <= 0) Destroy(gameObject);
 
-            if (_evaporating)
-            {
-                _timeLeft -= Time.deltaTime;
-            }
+            if (_evaporating) _timeLeft -= Time.deltaTime;
         }
 
         public void StartEvaporation()

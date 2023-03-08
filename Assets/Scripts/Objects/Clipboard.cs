@@ -10,13 +10,13 @@ namespace Objects
         [SerializeField] [Multiline] private string content;
 
         private bool _isShown;
+        private float _secondsBeforeClosing;
+        private const float SecondsBeforeClosing = 2;
 
         private void Update()
         {
-            if (_isShown && Input.GetKeyDown(KeyCode.E))
-            {
-                Deactivate();
-            }
+            if (_isShown && Input.GetKeyDown(KeyCode.E) && _secondsBeforeClosing <= 0) Deactivate();
+            if (_secondsBeforeClosing > 0) _secondsBeforeClosing -= Time.deltaTime;
         }
 
         public void Activate()
@@ -24,6 +24,7 @@ namespace Objects
             textMesh.text = content;
             clipboard.SetActive(true);
             _isShown = true;
+            _secondsBeforeClosing = SecondsBeforeClosing;
         }
 
         public void Deactivate()

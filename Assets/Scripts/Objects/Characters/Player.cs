@@ -1,3 +1,4 @@
+using Controllers;
 using UnityEngine;
 
 namespace Objects.Characters
@@ -13,10 +14,7 @@ namespace Objects.Characters
             get => _currentMaxHealth;
             set
             {
-                if (value < _currentMaxHealth)
-                {
-                    DealDamage(_currentMaxHealth - value);
-                }
+                if (value < _currentMaxHealth) DealDamage(_currentMaxHealth - value);
 
                 _currentMaxHealth = value;
             }
@@ -24,7 +22,14 @@ namespace Objects.Characters
 
         private void Awake()
         {
+            onDeath.AddListener(Die);
             CurrentMaxHealth = maxHealth;
+        }
+
+        private void Die()
+        {
+            Destroy(GetComponent<PlayerController>());
+            Destroy(Camera.main.GetComponent<CameraController>());
         }
     }
 }

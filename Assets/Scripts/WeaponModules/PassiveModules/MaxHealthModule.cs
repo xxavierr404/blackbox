@@ -7,10 +7,10 @@ namespace WeaponModules.PassiveModules
     public class MaxHealthModule : PassiveModule
     {
         [SerializeField] private int newHealth;
-        
+
         private int _oldHealth;
         private Player _player;
-        
+
         public override void ApplyBuff(PlayerController playerController)
         {
             _player = playerController.GetComponent<Player>();
@@ -20,10 +20,7 @@ namespace WeaponModules.PassiveModules
 
         public override void RevertBuff(PlayerController playerController)
         {
-            if (!_player)
-            {
-                _player = playerController.GetComponent<Player>();
-            }
+            if (!_player) _player = playerController.GetComponent<Player>();
 
             _player.CurrentMaxHealth = _oldHealth;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using Objects.Characters;
 using TMPro;
 using UnityEngine;
@@ -14,10 +13,12 @@ namespace UI
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private TextMeshProUGUI firstModuleCooldownText;
         [SerializeField] private TextMeshProUGUI secondModuleCooldownText;
+        [SerializeField] private GameObject gameOverScreen;
 
         private void Awake()
         {
             player.OnChangeHealthEvent += health => healthText.SetText(health.ToString());
+            player.onDeath.AddListener(() => gameOverScreen.SetActive(true));
         }
 
         private void Update()
@@ -26,7 +27,7 @@ namespace UI
             secondModuleCooldownText.SetText(GetModuleStatus(blackBox.SecondShootModule));
         }
 
-        private String GetModuleStatus(ShootModule module)
+        private string GetModuleStatus(ShootModule module)
         {
             if (!module) return "Не установлен";
             if (module.CanShoot || module.TimeUntilNextShoot <= 0) return "Готов";

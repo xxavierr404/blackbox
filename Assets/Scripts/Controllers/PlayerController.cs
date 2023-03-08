@@ -1,25 +1,23 @@
-using Objects;
 using UnityEngine;
 
 namespace Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        private const float JumpDelay = 0.2f;
         [SerializeField] private new Rigidbody rigidbody;
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSensitivity;
         [SerializeField] private float jumpForce;
         [SerializeField] private int maxJumpCount;
-
-        private const float JumpDelay = 0.2f;
         private int _currentMaxJumpCount;
         private float _currentMovementSpeed;
+        private float _secondsUntilNextJump;
         private int _jumpCount;
-        private float _framesUntilNextJump;
 
         private void Start()
         {
-            _framesUntilNextJump = 0;
+            _secondsUntilNextJump = 0;
             ResetMovementSpeed();
             ResetMaxJumpCount();
         }
@@ -28,29 +26,13 @@ namespace Controllers
         {
             MovePlayer(GetMovementVector());
             RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-            
-            if (Input.GetKeyDown(KeyCode.E)
-                && Physics.Raycast(transform.position, transform.forward, out var hit, 5f))
-            {
-                var clipboard = hit.collider.GetComponent<Clipboard>();
-                if (clipboard)
-                {
-                    clipboard.Activate();
-                }
-            }
         }
 
         private void FixedUpdate()
         {
-            if (Input.GetAxis("Jump") > 0 && _framesUntilNextJump <= 0)
-            {
-                Jump();
-            }
+            if (Input.GetAxis("Jump") > 0 && _secondsUntilNextJump <= 0) Jump();
 
-            if (_framesUntilNextJump > 0)
-            {
-                _framesUntilNextJump -= Time.deltaTime;
-            }
+            if (_secondsUntilNextJump > 0) _secondsUntilNextJump -= Time.deltaTime;
         }
 
         private void Jump()
@@ -58,16 +40,12 @@ namespace Controllers
             if (_jumpCount >= _currentMaxJumpCount)
             {
                 if (CheckGround())
-                {
                     _jumpCount = 0;
-                }
                 else
-                {
                     return;
-                }
             }
 
-            _framesUntilNextJump = JumpDelay;
+            _secondsUntilNextJump = JumpDelay;
             _jumpCount++;
             rigidbody.AddForce(new Vector3(0, jumpForce), ForceMode.VelocityChange);
         }

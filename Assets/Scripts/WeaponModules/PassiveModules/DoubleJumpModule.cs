@@ -7,7 +7,7 @@ namespace WeaponModules.PassiveModules
     public class DoubleJumpModule : PassiveModule
     {
         [SerializeField] private int jumpCount;
-        
+
         public override void ApplyBuff(PlayerController playerController)
         {
             playerController.SetMaxJumpCount(jumpCount);

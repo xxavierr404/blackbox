@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,14 +12,6 @@ namespace Objects.Characters
         [SerializeField] private float attackDistance;
         [SerializeField] private float attackDelay;
         [SerializeField] private int damage;
-
-        private enum EnemyState
-        {
-            Idle,
-            Chasing,
-            Attacking,
-            Disabled
-        }
 
         private EnemyState _state;
         private float _timeUntilAttack;
@@ -48,7 +39,6 @@ namespace Objects.Characters
                 case EnemyState.Disabled:
                     break;
             }
-            
         }
 
         private void AttackTarget(float distance)
@@ -75,29 +65,18 @@ namespace Objects.Characters
             navMeshAgent.destination = target.transform.position;
 
             if (distance <= attackDistance)
-            {
                 _state = EnemyState.Attacking;
-            }
-            else if (distance > detectionDistance)
-            {
-                _state = EnemyState.Idle;
-            }
+            else if (distance > detectionDistance) _state = EnemyState.Idle;
         }
 
         private void CheckIfTargetIsNear(float distance)
         {
-            if (distance <= detectionDistance)
-            {
-                _state = EnemyState.Chasing;
-            }
+            if (distance <= detectionDistance) _state = EnemyState.Chasing;
         }
 
         public void DisableForSeconds(float seconds)
         {
-            if (_state == EnemyState.Disabled)
-            {
-                return;
-            }
+            if (_state == EnemyState.Disabled) return;
 
             _state = EnemyState.Disabled;
             StartCoroutine(WaitBeforeEnabling(seconds));
@@ -107,6 +86,14 @@ namespace Objects.Characters
         {
             yield return new WaitForSeconds(seconds);
             _state = EnemyState.Idle;
+        }
+
+        private enum EnemyState
+        {
+            Idle,
+            Chasing,
+            Attacking,
+            Disabled
         }
     }
 }

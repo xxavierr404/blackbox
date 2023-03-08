@@ -12,21 +12,19 @@ public class Freezable : MonoBehaviour
     [SerializeField] private Enemy attacker;
 
     private float _currentFreezeRate;
+    private bool _frozen;
+    private Color _initialColor;
+    private float _timeUntilUnfreezing;
+
     private float CurrentFreezeRate
     {
         get => _currentFreezeRate;
         set
         {
-            if (value == 0)
-            {
-                Unfreeze();
-            }
+            if (value == 0) Unfreeze();
 
-            if (value >= maxFreezeRate)
-            {
-                Freeze();
-            }
-            
+            if (value >= maxFreezeRate) Freeze();
+
             if (renderer)
             {
                 if (value == 0)
@@ -48,10 +46,7 @@ public class Freezable : MonoBehaviour
             _currentFreezeRate = value;
         }
     }
-    private float _timeUntilUnfreezing;
-    private bool _frozen;
-    private Color _initialColor;
-    
+
     private void Start()
     {
         _initialColor = renderer.material.color;
@@ -60,20 +55,16 @@ public class Freezable : MonoBehaviour
     private void FixedUpdate()
     {
         if (_timeUntilUnfreezing > 0)
-        {
             _timeUntilUnfreezing -= Time.deltaTime;
-        }
         else
-        {
             ResetFreezeRate();
-        }
     }
 
     public void ResetFreezeRate()
     {
         CurrentFreezeRate = 0;
     }
-    
+
     public void IncreaseFreezeRate(float freezeRate)
     {
         _timeUntilUnfreezing = freezeDuration;
@@ -82,24 +73,15 @@ public class Freezable : MonoBehaviour
 
     private void Freeze()
     {
-        if (_frozen)
-        {
-            return;
-        }
-        
+        if (_frozen) return;
+
         _frozen = true;
         rb.isKinematic = true;
 
-        if (navMeshAgent)
-        {
-            navMeshAgent.isStopped = true;
-        }
+        if (navMeshAgent) navMeshAgent.isStopped = true;
 
-        if (attacker)
-        {
-            attacker.enabled = false;
-        }
-        
+        if (attacker) attacker.enabled = false;
+
         _timeUntilUnfreezing = freezeDuration;
     }
 
@@ -107,15 +89,9 @@ public class Freezable : MonoBehaviour
     {
         rb.isKinematic = false;
 
-        if (navMeshAgent)
-        {
-            navMeshAgent.isStopped = false;
-        }
+        if (navMeshAgent) navMeshAgent.isStopped = false;
 
-        if (attacker)
-        {
-            attacker.enabled = true;
-        }
+        if (attacker) attacker.enabled = true;
 
         _frozen = false;
     }

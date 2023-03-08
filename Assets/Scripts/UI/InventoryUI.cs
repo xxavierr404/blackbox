@@ -1,7 +1,5 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
@@ -15,13 +13,11 @@ namespace UI
         [SerializeField] private TMP_Dropdown secondModuleDropdown;
 
         private bool _inventoryOpened;
-        
+
         private void Awake()
         {
             foreach (var module in inventory.AvailablePassiveModules)
-            {
                 passiveModuleDropdown.options.Add(new TMP_Dropdown.OptionData(module.ModuleName));
-            }
 
             foreach (var module in inventory.AvailableShootModules)
             {
@@ -35,7 +31,7 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 _inventoryOpened = !_inventoryOpened;
-                HUD.SetActive(!_inventoryOpened); 
+                HUD.SetActive(!_inventoryOpened);
                 inventoryHUD.SetActive(_inventoryOpened);
                 Cursor.visible = _inventoryOpened;
                 Cursor.lockState = _inventoryOpened ? CursorLockMode.None : CursorLockMode.Locked;

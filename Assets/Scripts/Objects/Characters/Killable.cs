@@ -5,15 +5,15 @@ namespace Objects.Characters
 {
     public class Killable : MonoBehaviour
     {
+        public delegate void OnChangeHealth(int newHealth);
+
         [SerializeField] private int initialHealth;
         public UnityEvent onDeath;
 
-        public delegate void OnChangeHealth(int newHealth);
+        private int _currentHealthPoints;
 
         public OnChangeHealth OnChangeHealthEvent;
-        
-        private int _currentHealthPoints;
-        
+
         private int CurrentHealthPoints
         {
             get => _currentHealthPoints;

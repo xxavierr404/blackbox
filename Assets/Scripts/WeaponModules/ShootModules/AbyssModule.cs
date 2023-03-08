@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Objects.Characters;
 using UnityEngine;
 
@@ -23,9 +21,9 @@ namespace WeaponModules.ShootModules
         {
             base.Shoot(shooter);
             if (!CanShoot) return;
-            
+
             DisableLights();
-            
+
             var colliders = Physics.OverlapSphere(transform.position, attackRadius);
             foreach (var col in colliders)
             {

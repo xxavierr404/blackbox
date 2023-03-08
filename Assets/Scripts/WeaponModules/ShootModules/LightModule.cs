@@ -1,5 +1,4 @@
-﻿using System;
-using Objects.Characters;
+﻿using Objects.Characters;
 using UnityEngine;
 
 namespace WeaponModules.ShootModules
@@ -18,10 +17,7 @@ namespace WeaponModules.ShootModules
         protected override void Update()
         {
             base.Update();
-            if (light.intensity > 0)
-            {
-                light.intensity = 5f * TimeUntilNextShoot / shootDelay;
-            }
+            if (light.intensity > 0) light.intensity = 5f * TimeUntilNextShoot / shootDelay;
         }
 
         public override void Shoot(Transform shooter)
@@ -32,11 +28,10 @@ namespace WeaponModules.ShootModules
             if (Physics.Raycast(transform.position, shooter.forward, out var hit, shootDistance))
             {
                 var enemy = hit.collider.GetComponent<Enemy>();
-                if (enemy)
-                {
-                    enemy.DisableForSeconds(enemyStunDuration);
-                }
-            };
+                if (enemy) enemy.DisableForSeconds(enemyStunDuration);
+            }
+
+            ;
 
             light.intensity = 5f;
         }
