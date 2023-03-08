@@ -1386,7 +1386,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hello world
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f028e08777da6184383f8057d4777f51, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e8f77bcbf788ca24b91ccb5a39163fda, type: 2}
   m_sharedMaterial: {fileID: -3388460429292592704, guid: f028e08777da6184383f8057d4777f51, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

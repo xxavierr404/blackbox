@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3120446327568467696}
   - component: {fileID: 3120446327568467466}
   - component: {fileID: 5098076367625846486}
+  - component: {fileID: 5137105921441861337}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableShootModules: []
-  availableMovementModules: []
+  availablePassiveModules: []
 --- !u!114 &5098076367625846486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,11 +163,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f63c816d4b531439a79463e40da612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 70
+  initialHealth: 100
   onDeath:
     m_PersistentCalls:
       m_Calls: []
   maxHealth: 100
+--- !u!114 &5137105921441861337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120446327568467699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf1acb8be6943a5ba20ada2c816693a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3120446327786166267
 GameObject:
   m_ObjectHideFlags: 0

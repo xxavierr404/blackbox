@@ -8,7 +8,8 @@ namespace Controllers
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.E)
-                && Physics.Raycast(transform.position, transform.forward, out var hit, 5f))
+                && Physics.Raycast(Camera.main.transform.position,
+                    Camera.main.transform.forward, out var hit, 5f))
             {
                 var clipboard = hit.collider.GetComponent<Clipboard>();
                 if (clipboard) clipboard.Activate();
