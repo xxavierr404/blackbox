@@ -1192,7 +1192,9 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: "\u041F\u0443\u0441\u0442\u043E"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2344,7 +2346,9 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: "\u041F\u0443\u0441\u0442\u043E"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3100,7 +3104,9 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: "\u041F\u0443\u0441\u0442\u043E"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -7334,7 +7340,7 @@ PrefabInstance:
       objectReference: {fileID: 3120446326860741267}
     - target: {fileID: 8199596951155719758, guid: 0f6e1d9edd1800744a04844e7b749cd6, type: 3}
       propertyPath: initialHealth
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8199596951155719759, guid: 0f6e1d9edd1800744a04844e7b749cd6, type: 3}
       propertyPath: attacker

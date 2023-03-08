@@ -148,14 +148,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d665b34ef61a5024a99ef5d365a6e416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 30
+  initialHealth: 0
   onDeath:
     m_PersistentCalls:
       m_Calls: []
   navMeshAgent: {fileID: 8199596951155719745}
   target: {fileID: 0}
   detectionDistance: 15
-  attackDistance: 3
+  attackDistance: 2
   attackDelay: 3
   damage: 20
 --- !u!195 &8199596951155719745

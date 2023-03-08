@@ -42,17 +42,35 @@ public class BlackBox : MonoBehaviour
 
     public void SetPassiveModule(TMP_Dropdown dropdown)
     {
-        SetPassiveModule(inventory.GetPassiveModuleByName(dropdown.options[dropdown.value].text));
+        var moduleName = dropdown.options[dropdown.value].text;
+        if (moduleName.Equals("Пусто"))
+        {
+            ResetPassiveModule();
+            return;
+        }
+        SetPassiveModule(inventory.GetPassiveModuleByName(moduleName));
     }
 
     public void SetFirstShootModule(TMP_Dropdown dropdown)
     {
-        FirstShootModule = inventory.GetShootModuleByName(dropdown.options[dropdown.value].text);
+        var moduleName = dropdown.options[dropdown.value].text;
+        if (moduleName.Equals("Пусто"))
+        {
+            FirstShootModule = null;
+            return;
+        }
+        FirstShootModule = inventory.GetShootModuleByName(moduleName);
     }
 
     public void SetSecondShootModule(TMP_Dropdown dropdown)
     {
-        SecondShootModule = inventory.GetShootModuleByName(dropdown.options[dropdown.value].text);
+        var moduleName = dropdown.options[dropdown.value].text;
+        if (moduleName.Equals("Пусто"))
+        {
+            SecondShootModule = null;
+            return;
+        }
+        SecondShootModule = inventory.GetShootModuleByName(moduleName);
     }
     
     private void SetPassiveModule(PassiveModule passiveModule)
@@ -63,5 +81,15 @@ public class BlackBox : MonoBehaviour
         }
         _passiveModule = passiveModule;
         _passiveModule.ApplyBuff(playerController);
+    }
+
+    private void ResetPassiveModule()
+    {
+        if (_passiveModule)
+        {
+            _passiveModule.RevertBuff(playerController);
+        }
+
+        _passiveModule = null;
     }
 }
