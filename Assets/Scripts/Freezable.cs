@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Objects.Characters;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Freezable : MonoBehaviour
@@ -8,6 +9,7 @@ public class Freezable : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private new MeshRenderer renderer;
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private Enemy attacker;
 
     private float _currentFreezeRate;
     private float CurrentFreezeRate
@@ -39,7 +41,10 @@ public class Freezable : MonoBehaviour
                     material.color = new Color(
                         oldColor.r * (maxFreezeRate - freezeRate) / maxFreezeRate,
                         oldColor.g * (maxFreezeRate - freezeRate) / maxFreezeRate,
-                        freezeRate / maxFreezeRate * 255);
+                        freezeRate / maxFreezeRate);
+                    Debug.Log(oldColor.r * (maxFreezeRate - freezeRate) / maxFreezeRate);
+                    Debug.Log(oldColor.g * (maxFreezeRate - freezeRate) / maxFreezeRate);
+                    Debug.Log(freezeRate / maxFreezeRate);
                 }
             }
 
@@ -92,6 +97,11 @@ public class Freezable : MonoBehaviour
         {
             navMeshAgent.isStopped = true;
         }
+
+        if (attacker)
+        {
+            attacker.enabled = false;
+        }
         
         _timeUntilUnfreezing = freezeDuration;
     }
@@ -103,6 +113,11 @@ public class Freezable : MonoBehaviour
         if (navMeshAgent)
         {
             navMeshAgent.isStopped = false;
+        }
+
+        if (attacker)
+        {
+            attacker.enabled = true;
         }
 
         _frozen = false;
