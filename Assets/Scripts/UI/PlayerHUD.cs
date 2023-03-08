@@ -12,13 +12,29 @@ namespace UI
         [SerializeField] private BlackBox blackBox;
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private TextMeshProUGUI firstModuleCooldownText;
+        [SerializeField] private TextMeshProUGUI firstModuleLabelText;
         [SerializeField] private TextMeshProUGUI secondModuleCooldownText;
+        [SerializeField] private TextMeshProUGUI secondModuleLabelText;
         [SerializeField] private GameObject gameOverScreen;
 
         private void Awake()
         {
             player.OnChangeHealthEvent += health => healthText.SetText(health.ToString());
             player.onDeath.AddListener(() => gameOverScreen.SetActive(true));
+
+            blackBox.OnFirstModuleChangeEvent += () =>
+            {
+                firstModuleLabelText.SetText(blackBox.FirstShootModule
+                    ? blackBox.FirstShootModule.ModuleName
+                    : "Модуль 1:");
+            };
+
+            blackBox.OnSecondModuleChangeEvent += () =>
+            {
+                secondModuleLabelText.SetText(blackBox.SecondShootModule
+                    ? blackBox.SecondShootModule.ModuleName
+                    : "Модуль 2:");
+            };
         }
 
         private void Update()

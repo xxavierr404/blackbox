@@ -13,11 +13,6 @@ namespace WeaponModules
         public bool CanShoot { get; private set; }
         public string ModuleName => moduleName;
 
-        private void Start()
-        {
-            TimeUntilNextShoot = 0;
-        }
-
         protected virtual void Update()
         {
             if (TimeUntilNextShoot > 0) TimeUntilNextShoot -= Time.deltaTime;

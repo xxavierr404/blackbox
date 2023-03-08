@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Controllers
 {
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private float verticalSensitivity;
+
+        private bool Locked { get; set; }
+        
+        private void Awake()
+        {
+            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
+        }
 
         private void Start()
         {
@@ -14,6 +22,8 @@ namespace Controllers
 
         private void Update()
         {
+            if (Locked) return;
+            
             var angularIncrement = verticalSensitivity * Input.GetAxis("Mouse Y") * Time.deltaTime * -1;
             var eulerAngles = transform.localEulerAngles;
 

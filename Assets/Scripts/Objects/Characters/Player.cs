@@ -22,14 +22,8 @@ namespace Objects.Characters
 
         private void Awake()
         {
-            onDeath.AddListener(Die);
+            onDeath.AddListener(() => MenuManager.GetInstance().OnMenuStateChangeEvent?.Invoke(true));
             CurrentMaxHealth = maxHealth;
-        }
-
-        private void Die()
-        {
-            Destroy(GetComponent<PlayerController>());
-            Destroy(Camera.main.GetComponent<CameraController>());
         }
     }
 }

@@ -13,6 +13,15 @@ namespace UI
         [SerializeField] private TMP_Dropdown secondModuleDropdown;
 
         private bool _inventoryOpened;
+        private bool InventoryOpened
+        {
+            get => _inventoryOpened;
+            set
+            {
+                MenuManager.GetInstance().OnMenuStateChangeEvent?.Invoke(value);
+                _inventoryOpened = value;
+            }
+        }
 
         private void Awake()
         {
@@ -30,11 +39,11 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _inventoryOpened = !_inventoryOpened;
-                HUD.SetActive(!_inventoryOpened);
-                inventoryHUD.SetActive(_inventoryOpened);
-                Cursor.visible = _inventoryOpened;
-                Cursor.lockState = _inventoryOpened ? CursorLockMode.None : CursorLockMode.Locked;
+                InventoryOpened = !InventoryOpened;
+                HUD.SetActive(!InventoryOpened);
+                inventoryHUD.SetActive(InventoryOpened);
+                Cursor.visible = InventoryOpened;
+                Cursor.lockState = InventoryOpened ? CursorLockMode.None : CursorLockMode.Locked;
             }
         }
     }

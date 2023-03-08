@@ -8,24 +8,31 @@ public class BlackBox : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Inventory inventory;
     private Transform _mainTransform;
-
+    
     private PassiveModule _passiveModule;
+    private bool Locked { get; set; }
 
+    public delegate void OnModuleChange();
+
+    public OnModuleChange OnFirstModuleChangeEvent;
+    public OnModuleChange OnSecondModuleChangeEvent;
+    
     public ShootModule FirstShootModule { get; private set; }
     public ShootModule SecondShootModule { get; private set; }
 
     private void Start()
     {
         _mainTransform = Camera.main.transform;
+        MenuManager.GetInstance().OnMenuStateChangeEvent += (newState) => Locked = newState;
     }
 
     private void Update()
     {
-        if (Input.GetAxis("Fire1") > 0 && FirstShootModule)
+        if (Input.GetAxis("Fire1") > 0 && FirstShootModule && !Locked)
             FirstShootModule.Shoot(_mainTransform);
         else if (FirstShootModule) FirstShootModule.StopShooting();
 
-        if (Input.GetAxis("Fire2") > 0 && SecondShootModule)
+        if (Input.GetAxis("Fire2") > 0 && SecondShootModule && !Locked)
             SecondShootModule.Shoot(_mainTransform);
         else if (SecondShootModule) SecondShootModule.StopShooting();
     }
@@ -48,10 +55,13 @@ public class BlackBox : MonoBehaviour
         if (moduleName.Equals("Пусто"))
         {
             FirstShootModule = null;
-            return;
+        }
+        else
+        {
+            FirstShootModule = inventory.GetShootModuleByName(moduleName);
         }
 
-        FirstShootModule = inventory.GetShootModuleByName(moduleName);
+        OnFirstModuleChangeEvent?.Invoke();
     }
 
     public void SetSecondShootModule(TMP_Dropdown dropdown)
@@ -60,10 +70,13 @@ public class BlackBox : MonoBehaviour
         if (moduleName.Equals("Пусто"))
         {
             SecondShootModule = null;
-            return;
+        }
+        else
+        {
+            SecondShootModule = inventory.GetShootModuleByName(moduleName);
         }
 
-        SecondShootModule = inventory.GetShootModuleByName(moduleName);
+        OnSecondModuleChangeEvent?.Invoke();
     }
 
     private void SetPassiveModule(PassiveModule passiveModule)

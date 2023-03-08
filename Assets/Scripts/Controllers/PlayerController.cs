@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Controllers
@@ -14,6 +15,13 @@ namespace Controllers
         private float _currentMovementSpeed;
         private float _secondsUntilNextJump;
         private int _jumpCount;
+        
+        private bool Locked { get; set; }
+
+        private void Awake()
+        {
+            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
+        }
 
         private void Start()
         {
@@ -24,14 +32,16 @@ namespace Controllers
 
         private void Update()
         {
+            if (Locked) return;
             MovePlayer(GetMovementVector());
             RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
         }
 
         private void FixedUpdate()
         {
+            if (Locked) return;
+            
             if (Input.GetAxis("Jump") > 0 && _secondsUntilNextJump <= 0) Jump();
-
             if (_secondsUntilNextJump > 0) _secondsUntilNextJump -= Time.deltaTime;
         }
 

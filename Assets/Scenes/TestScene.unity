@@ -1841,6 +1841,7 @@ GameObject:
   - component: {fileID: 650633209}
   - component: {fileID: 650633208}
   - component: {fileID: 650633212}
+  - component: {fileID: 650633213}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1948,8 +1949,22 @@ MonoBehaviour:
   blackBox: {fileID: 1279985893}
   healthText: {fileID: 1501832106}
   firstModuleCooldownText: {fileID: 1764254881}
+  firstModuleLabelText: {fileID: 1376656117}
   secondModuleCooldownText: {fileID: 833934392}
-  gameOverScreen: {fileID: 0}
+  secondModuleLabelText: {fileID: 1389652550}
+  gameOverScreen: {fileID: 1641969140}
+--- !u!114 &650633213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650633207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccfaaef59914d98b583d1ce3b42923e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671943805
 GameObject:
   m_ObjectHideFlags: 0
