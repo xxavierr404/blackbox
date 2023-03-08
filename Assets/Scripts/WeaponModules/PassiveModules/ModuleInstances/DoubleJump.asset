@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df7d9cf3d474de39283799e43426f6c, type: 3}
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
+  moduleName: F34TH3R
   jumpCount: 2

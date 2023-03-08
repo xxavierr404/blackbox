@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Objects.Characters
@@ -8,6 +7,7 @@ namespace Objects.Characters
         [SerializeField] private int maxHealth;
 
         private int _currentMaxHealth;
+
         public int CurrentMaxHealth
         {
             get => _currentMaxHealth;

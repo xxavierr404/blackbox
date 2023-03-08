@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1215c48aef34b7c9220eb7204c5cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleName: T3RM0-A
   particle: {fileID: 0}
   shootDelay: 0.5
   shootingForce: 5

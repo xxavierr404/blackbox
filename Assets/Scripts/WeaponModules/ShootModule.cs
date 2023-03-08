@@ -4,12 +4,14 @@ namespace WeaponModules
 {
     public abstract class ShootModule: MonoBehaviour
     {
+        [SerializeField] private string moduleName;
         [SerializeField] private GameObject particle;
 
         [SerializeField] protected float shootDelay;
-        protected float TimeUntilNextShoot;
+        public float TimeUntilNextShoot { get; protected set; }
         
         public bool CanShoot { get; private set; }
+        public string ModuleName => moduleName;
 
         private void Start()
         {

@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19df06c982ab4748810220dc82e73d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleName: 
   particle: {fileID: 4358001893209250736}
   shootDelay: 0
-  shootDistance: 10
-  freezePower: 1
+  shootDistance: 15
+  freezePower: 10
 --- !u!1001 &2800366021151742175
 PrefabInstance:
   m_ObjectHideFlags: 0

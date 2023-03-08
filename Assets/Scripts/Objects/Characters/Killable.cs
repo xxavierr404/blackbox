@@ -7,10 +7,14 @@ namespace Objects.Characters
     {
         [SerializeField] private int initialHealth;
         public UnityEvent onDeath;
+
+        public delegate void OnChangeHealth(int newHealth);
+
+        public OnChangeHealth OnChangeHealthEvent;
         
         private int _currentHealthPoints;
         
-        protected int CurrentHealthPoints
+        private int CurrentHealthPoints
         {
             get => _currentHealthPoints;
             set
@@ -21,13 +25,14 @@ namespace Objects.Characters
                     value = 0;
                 }
 
+                OnChangeHealthEvent?.Invoke(value);
                 _currentHealthPoints = value;
             }
         }
 
         private void Start()
         {
-            _currentHealthPoints = initialHealth;
+            CurrentHealthPoints = initialHealth;
         }
 
         public void DealDamage(int hpToDecrease)

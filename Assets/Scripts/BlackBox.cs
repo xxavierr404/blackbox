@@ -1,42 +1,42 @@
 using System;
 using Controllers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using WeaponModules;
 
 public class BlackBox : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private ShootModule testModule;
-    [SerializeField] private ShootModule secondTestModule;
-    
-    private ShootModule _firstShootModule;
-    private ShootModule _secondShootModule;
+    [SerializeField] private ShootModule firstShootModule;
+    [SerializeField] private ShootModule secondShootModule;
+
     private PassiveModule _passiveModule;
     private Transform _mainTransform;
+
+    public ShootModule FirstShootModule => firstShootModule;
+    public ShootModule SecondShootModule => secondShootModule;
 
     private void Start()
     {
         _mainTransform = Camera.main.transform;
-        _firstShootModule = testModule;
-        _secondShootModule = secondTestModule;
     }
 
     private void Update()
     {
-        if (Input.GetAxis("Fire1") > 0 && _firstShootModule)
+        if (Input.GetAxis("Fire1") > 0 && FirstShootModule)
         {
-            _firstShootModule.Shoot(_mainTransform);
-        } else if (_firstShootModule)
+            FirstShootModule.Shoot(_mainTransform);
+        } else if (FirstShootModule)
         {
-            _firstShootModule.StopShooting();
+            FirstShootModule.StopShooting();
         }
 
-        if (Input.GetAxis("Fire2") > 0 && _secondShootModule)
+        if (Input.GetAxis("Fire2") > 0 && SecondShootModule)
         {
-            _secondShootModule.Shoot(_mainTransform);
-        } else if (_secondShootModule)
+            SecondShootModule.Shoot(_mainTransform);
+        } else if (SecondShootModule)
         {
-            _secondShootModule.StopShooting();
+            SecondShootModule.StopShooting();
         }
     }
 

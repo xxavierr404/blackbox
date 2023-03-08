@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e725e9a29fb4b2fafc860b9aa33aaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleName: SUN-M1N1
   particle: {fileID: 0}
   shootDelay: 20
   light: {fileID: 1001862862609565727}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d4c9b63c340a98eb606f74831d40d, type: 3}
   m_Name: FiveSpeed
   m_EditorClassIdentifier: 
+  moduleName: L1GHTN1NG
   newSpeed: 5
