@@ -1,3 +1,4 @@
+using Objects;
 using UnityEngine;
 
 namespace Controllers
@@ -27,6 +28,16 @@ namespace Controllers
         {
             MovePlayer(GetMovementVector());
             RotatePlayer(new Vector3(0, Input.GetAxis("Mouse X"), 0));
+            
+            if (Input.GetKeyDown(KeyCode.E)
+                && Physics.Raycast(transform.position, transform.forward, out var hit, 5f))
+            {
+                var clipboard = hit.collider.GetComponent<Clipboard>();
+                if (clipboard)
+                {
+                    clipboard.Activate();
+                }
+            }
         }
 
         private void FixedUpdate()
