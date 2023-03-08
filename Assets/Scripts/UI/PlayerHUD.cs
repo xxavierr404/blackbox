@@ -20,7 +20,12 @@ namespace UI
         private void Awake()
         {
             player.OnChangeHealthEvent += health => healthText.SetText(health.ToString());
-            player.onDeath.AddListener(() => gameOverScreen.SetActive(true));
+            player.onDeath.AddListener(() =>
+            {
+                gameOverScreen.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            });
 
             blackBox.OnFirstModuleChangeEvent += () =>
             {

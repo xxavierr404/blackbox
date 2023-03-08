@@ -19,6 +19,10 @@ namespace Objects.Characters
         private void Awake()
         {
             onDeath.AddListener(() => Destroy(gameObject));
+            if (!target)
+            {
+                target = GameObject.FindWithTag("Player").GetComponent<Killable>();
+            }
         }
 
         private void Update()

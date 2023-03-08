@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8199596951155719759}
   - component: {fileID: 8199596951155719758}
   - component: {fileID: 8199596951155719745}
+  - component: {fileID: 6217129476871456404}
   m_Layer: 0
   m_Name: Android
   m_TagString: Android
@@ -133,9 +134,9 @@ MonoBehaviour:
   maxFreezeRate: 100
   freezeDuration: 10
   rb: {fileID: 8199596951155719752}
-  renderer: {fileID: 8199596951155719754}
   navMeshAgent: {fileID: 8199596951155719745}
-  attacker: {fileID: 0}
+  attacker: {fileID: 8199596951155719758}
+  colorHandler: {fileID: 6217129476871456404}
 --- !u!114 &8199596951155719758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d665b34ef61a5024a99ef5d365a6e416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 0
+  initialHealth: 30
   onDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -180,3 +181,16 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6217129476871456404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199596951155719753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6d17de468e41a397d0977b850cee8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 8199596951155719754}
