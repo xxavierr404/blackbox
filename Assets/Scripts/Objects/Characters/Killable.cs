@@ -1,16 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Objects.Characters
 {
     public class Killable : MonoBehaviour
     {
-        [SerializeField] private int healthPoints;
+        [SerializeField] private int initialHealth;
         public UnityEvent onDeath;
-
+        
         private int _currentHealthPoints;
-        private int CurrentHealthPoints
+        
+        protected int CurrentHealthPoints
         {
             get => _currentHealthPoints;
             set
@@ -27,7 +27,7 @@ namespace Objects.Characters
 
         private void Start()
         {
-            _currentHealthPoints = healthPoints;
+            _currentHealthPoints = initialHealth;
         }
 
         public void DealDamage(int hpToDecrease)

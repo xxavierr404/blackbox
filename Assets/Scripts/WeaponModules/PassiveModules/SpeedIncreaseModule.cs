@@ -8,9 +8,9 @@ namespace WeaponModules.PassiveModules
     {
         [SerializeField] private float newSpeed;
 
-        public override void ApplyBuff(PlayerController player)
+        public override void ApplyBuff(PlayerController playerController)
         {
-            player.SetMovementSpeed(newSpeed);
+            playerController.SetMovementSpeed(newSpeed);
         }
 
         public override void RevertBuff(PlayerController player)
