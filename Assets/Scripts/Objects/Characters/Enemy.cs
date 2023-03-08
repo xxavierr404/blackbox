@@ -12,6 +12,7 @@ namespace Objects.Characters
         [SerializeField] private float attackDistance;
         [SerializeField] private float attackDelay;
         [SerializeField] private int damage;
+        [SerializeField] private Animator animator;
 
         private EnemyState _state;
         private float _timeUntilAttack;
@@ -33,14 +34,22 @@ namespace Objects.Characters
                 default:
                 case EnemyState.Idle:
                     CheckIfTargetIsNear(distance);
+                    if (animator)
+                        animator.SetTrigger("IsIdle");
                     break;
                 case EnemyState.Chasing:
                     ChaseTarget(distance);
+                    if (animator)
+                        animator.SetTrigger("IsWalking");
                     break;
                 case EnemyState.Attacking:
                     AttackTarget(distance);
+                    if (animator)
+                        animator.SetTrigger("IsAttacking");
                     break;
                 case EnemyState.Disabled:
+                    if (animator)
+                        animator.SetTrigger("IsIdle");
                     break;
             }
         }
