@@ -62,9 +62,11 @@ namespace Controllers
 
         private bool CheckGround()
         {
-            return Physics.Raycast(transform.position - Vector3.down,
+            return Physics.Raycast(transform.position,
                 Vector3.down,
-                2f);
+                0.7f,
+                ~LayerMask.NameToLayer("Player")
+                );
         }
 
         private Vector3 GetMovementVector()

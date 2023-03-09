@@ -61,7 +61,7 @@ namespace Objects
             _frozen = true;
             rb.isKinematic = true;
 
-            if (navMeshAgent) navMeshAgent.isStopped = true;
+            if (navMeshAgent && !navMeshAgent.isStopped) navMeshAgent.isStopped = true;
 
             if (attacker) attacker.enabled = false;
 
@@ -72,7 +72,7 @@ namespace Objects
         {
             rb.isKinematic = false;
 
-            if (navMeshAgent) navMeshAgent.isStopped = false;
+            if (navMeshAgent && navMeshAgent.isStopped) navMeshAgent.isStopped = false;
 
             if (attacker) attacker.enabled = true;
 

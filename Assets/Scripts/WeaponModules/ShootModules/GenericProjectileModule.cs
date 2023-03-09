@@ -14,7 +14,7 @@ namespace WeaponModules.ShootModules
 
             var weaponTransform = transform;
             var bulletInstance = Instantiate(_bulletPrefab,
-                weaponTransform.position,
+                weaponTransform.position + weaponTransform.forward,
                 weaponTransform.rotation,
                 null);
             bulletInstance
