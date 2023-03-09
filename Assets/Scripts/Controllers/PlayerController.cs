@@ -18,13 +18,9 @@ namespace Controllers
         
         private bool Locked { get; set; }
 
-        private void Awake()
-        {
-            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
-        }
-
         private void Start()
         {
+            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
             _secondsUntilNextJump = 0;
             ResetMovementSpeed();
             ResetMaxJumpCount();
@@ -64,7 +60,7 @@ namespace Controllers
         {
             return Physics.Raycast(transform.position,
                 Vector3.down,
-                0.7f,
+                1f,
                 ~LayerMask.NameToLayer("Player")
                 );
         }

@@ -8,14 +8,10 @@ namespace Controllers
         [SerializeField] private float verticalSensitivity;
 
         private bool Locked { get; set; }
-        
-        private void Awake()
-        {
-            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
-        }
 
         private void Start()
         {
+            MenuManager.GetInstance().OnMenuStateChangeEvent += state => Locked = state;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

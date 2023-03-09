@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FirstChamber.unity
+    guid: de8e82a25179fbe4bb84f2d7f668ed51
   m_configObjects: {}
